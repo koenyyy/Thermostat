@@ -76,3 +76,17 @@ nav li{
     height: 35px;
     background-color: aqua;
 }
+
+.row .btn{
+    display: block;
+    height: 50px;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 6%;
+    line-height: 35px;
+    text-align: center;
+    border-color: #FF4081;
+    border-radius: 0;
+    background-color: #FF4081;
+    vertical-align: middle;
+}
