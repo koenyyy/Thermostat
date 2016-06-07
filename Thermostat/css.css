@@ -1,0 +1,78 @@
+body{
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    
+}
+
+#header{
+    background-color: #F44336;
+    text-align: center;
+    font-size: 1.5em;
+    color: white;
+}
+
+nav{
+    margin: 0;
+    border-radius: 0;
+}
+
+nav li{
+    font-size: 0.8em;
+    text-align: center;
+}
+
+.navbar{
+    border-radius: 0;
+    
+}
+
+.slider{
+    margin: 0 auto;
+    text-align: center;    
+}
+
+.slider p{
+    font-size: 1.5em;
+    
+}
+
+#targetLoading{
+    text-align: center;
+    font-weight: 700;
+    height: 35px;
+    position: relative;
+    top: -80px;
+    z-index: 10;
+    visibility: hidden;
+}
+
+.buttonContainer{
+    width: 100%;
+    height: auto;
+    
+}
+
+.btn{
+    width: 50%;
+    position: relative;
+    margin: 0 auto;
+    margin-left: 25%;
+}
+
+.output{
+    display: none;
+}
+
+.output p{
+    margin-top: 15px;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+#dataOverview{
+    font-size: 2em;
+    height: 35px;
+    background-color: aqua;
+}
