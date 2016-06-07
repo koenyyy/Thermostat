@@ -43,7 +43,7 @@ Program[Days.Friday]    = [];
 Program[Days.Saturday]  = [];
 Program[Days.Sunday]    = [];
 
-/* Retreive day program
+/* Retrive day program
 */
 function getProgram(day) {
     return Program[day];
@@ -71,7 +71,7 @@ function sortMergeProgram(day) {
 function get(attribute_name, xml_tag) {
     return requestData(
         "/"+attribute_name,
-        function(data) {
+        function(data) { 
             return $(data).find(xml_tag).text();
         }
     );
@@ -195,7 +195,7 @@ function setDefault() {
             sw = doc.createElement('switch');
             sw.setAttribute('type', Type.Night);
             sw.setAttribute('state', 'off');
-            text = doc.createTextNode('01:00');
+            text = doc.createTextNode('00:00');
             sw.appendChild(text);
             day.appendChild(sw);
         }
@@ -204,7 +204,7 @@ function setDefault() {
             sw = doc.createElement('switch');
             sw.setAttribute('type', Type.Day);
             sw.setAttribute('state', 'off');
-            text = doc.createTextNode('01:00');
+            text = doc.createTextNode('00:00');
             sw.appendChild(text);
             day.appendChild(sw);
         }

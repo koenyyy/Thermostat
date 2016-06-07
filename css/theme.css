@@ -15,22 +15,14 @@ body{
 
 .slider{
     margin: 0 auto;
-    text-align: center;    
+    text-align: center;
+	height: 220px !important;
+	overflow: hidden;
 }
 
 .slider p{
     font-size: 1.5em;
     
-}
-
-#targetLoading{
-    text-align: center;
-    font-weight: 700;
-    height: 35px;
-    position: relative;
-    top: -80px;
-    z-index: 10;
-    visibility: hidden;
 }
 
 .buttonContainer{
@@ -61,4 +53,10 @@ body{
     font-size: 2em;
     height: 35px;
     background-color: aqua;
+}
+
+.temperature-table {
+	width: 50%;
+	min-width: 120px;
+	margin: auto;
 }

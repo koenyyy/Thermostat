@@ -5,16 +5,13 @@
         <link type="text/css" href="dist/css/bootstrap.min.css" rel="stylesheet">
         <link type="text/css" href="css/theme.css" rel="stylesheet">
         
-        <script src="dist/js/jquery-1.11.3.min.js"></script>
+        <script src="dist/js/jquery-1.12.4.min.js"></script>
 		<script src="dist/js/jquery.knob.min.js"></script>
 		
         <script src='js/api.js'></script>
         <script src='js/index.js'></script> 
         <script src='js/spinner.js'></script>
-
-          
-        
-        
+		
 	</head>
 	<body> 
         <div class="container-fluid">
@@ -24,18 +21,29 @@
         <div class="container-fluid">
             <div class="slider">
                 <p>Select temperature</p>
-                <input id="tempInput" class="knob" data-angleOffset=-120 data-angleArc=240 data-fgColor="#F44336" data-rotation="clockwise" value="" data-min="5" data-max="30" readonly>
-                <div id="targetLoading"></div>
+                <input id="tempInput" class="knob" data-angleOffset=-120 data-angleArc=240 data-fgColor="#F44336" data-rotation="clockwise" value="20" data-min="5" data-max="30" data-step="0.1">
             </div>
         </div>
+		
+		<div class="container-fluid row">
+			<table class="temperature-table">
+				<tr>
+					<th>Current temp.:</th>
+					<td>
+						<span id="temp-current"></span>
+						<span class="glyphicon glyphicon-arrow-up" id="temp-current-icon" style="display: none;"></span>
+					</td>
+				</tr>
+				<tr>
+					<th>Target temp.:</th>
+					<td><span id="temp-target"></span></td>
+				</tr>
+			</table>
+		</div>
         
         <div class="buttonContainer container-fluid">
 			<button type="button" id="setTempBtn" class="btn btn-default">Set temperature</button>
-        </div>
-        <div class="container-fluid output"><p>Temperature has been set to: </p>
-            <p id="tempOutput">°C</p>
-        </div>
-        
+        </div>        
     </body>
 </html>
 
