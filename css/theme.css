@@ -62,6 +62,10 @@ body{
 	margin: auto;
 }
 
+.temperature-table td {
+	text-align: right;
+}
+
 .row .btn{
     display: block;
     height: 50px;
