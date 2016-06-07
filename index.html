@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Thermostatic</title>
+		<title>Thermostat</title>
         <link type="text/css" href="dist/css/bootstrap.min.css" rel="stylesheet">
         <link type="text/css" href="css/theme.css" rel="stylesheet">
         
@@ -15,37 +15,21 @@
         
         
 	</head>
-    
 	<body> 
         <div class="container-fluid">
-        <div id="header" class="row">Thermostat.</div>
+			<div id="header" class="row">Thermostat</div>	
         </div>
-        <nav class="navbar navbar-default">
-          <div class="container-fluid">
-            <ul class="nav navbar-nav col-sm-3 col-xs-4">
-                <li class="active"><a href="index.html">Set target</a></li>
-            </ul>
-            <div class="col-xs-1"></div>
-            <ul class="nav navbar-nav col-sm-3 col-xs-4">
-                <li><a href="weekOverview.html">Week overview </a></li>
-            </ul>
-            <div class="col-xs-1"></div>
-            <ul class="nav navbar-nav col-sm-3 col-xs-4">
-                <li><a href="#">Change day and night</a></li>
-            </ul>
-          </div>
-        </nav>
         
         <div class="container-fluid">
             <div class="slider">
                 <p>Select temperature</p>
-                <input id="tempInput" class="knob" data-angleOffset=-125 data-angleArc=250 data-fgColor="#F44336" data-rotation="clockwise" value="" data-min="5" data-max="30">
+                <input id="tempInput" class="knob" data-angleOffset=-120 data-angleArc=240 data-fgColor="#F44336" data-rotation="clockwise" value="" data-min="5" data-max="30" readonly>
                 <div id="targetLoading"></div>
             </div>
         </div>
         
         <div class="buttonContainer container-fluid">
-        <button type="button" id="setTempBtn" class="btn btn-default">Set temperature</button>
+			<button type="button" id="setTempBtn" class="btn btn-default">Set temperature</button>
         </div>
         <div class="container-fluid output"><p>Temperature has been set to: </p>
             <p id="tempOutput">°C</p>
