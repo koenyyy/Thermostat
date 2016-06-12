@@ -2,7 +2,7 @@ body{
     background-color: white;
     margin: 0;
     padding: 0;
-    
+    overflow-x: hidden;
 }
 
 #header{
@@ -89,4 +89,48 @@ nav li{
     border-radius: 0;
     background-color: #FF4081;
     vertical-align: middle;
+}
+
+
+
+/*CSS for the Week buttons*/
+.acc-container {
+  width:90%;
+  margin:5px auto 0 auto;
+  overflow:hidden;
+}
+
+.acc-btn {
+    width:100%;
+    margin:0 auto;
+    cursor:pointer;
+    margin-top: 10%;
+}
+
+.acc-btn h1{
+    text-align: center;
+    background-color: #FF4081;
+    color: white;
+    width:100%;
+    margin:0 auto;
+    cursor:pointer;
+}
+
+.acc-content {
+  height:0px;
+  width:100%;
+  margin:0 auto;
+  overflow:hidden;
+}
+
+.acc-content-inner {
+  padding:30px;
+}
+
+.open {
+  height: auto;
+}
+
+.selected {
+    margin-top: 0px;
 }
