@@ -1,39 +1,47 @@
-//function to retrieve the current temp from the online thermostat thingy
-$(document).ready(function () {
-    var currentTemp = get("currentTemperature", "current_temperature");
-    var currentTempInt = Math.round(currentTemp);
-    $('#tempInput').val(currentTemp);
-});
+// global application variables
+var tempCurrent = 0;
+var tempTarget = 0;
+
+function updateCurrentTemperature() {
+	var tempNewCurrent = parseFloat(get("currentTemperature", "current_temperature"));
+	
+	if (tempNewCurrent > tempCurrent) {
+		$("#temp-current-icon")
+			.removeClass("glyphicon-arrow-down glyphicon-minus")
+			.addClass("glyphicon-arrow-up")
+	} else if (tempNewCurrent < tempCurrent) {
+		$("#temp-current-icon")
+			.removeClass("glyphicon-arrow-up glyphicon-minus")
+			.addClass("glyphicon-arrow-down")
+	} else {
+		$("#temp-current-icon")
+			.removeClass("glyphicon-arrow-up glyphicon-arrow-down")
+			.addClass("glyphicon-minus")
+	}
+	
+	tempCurrent = tempNewCurrent;
+	$("#temp-current").html(tempNewCurrent);
+}
 
 //function to put the target temperature, onClick also a heating indicator will be displayed.
 $(document).ready(function () {
-    var currentTemp = get("currentTemperature", "current_temperature");
-    $('#tempInput').val(currentTemp);
-});
-
-$(document).ready(function () {
+	var updateCurrentTempInterval = setInterval(updateCurrentTemperature, 1000);
+	
+	tempCurrent = parseFloat(get("currentTemperature", "current_temperature"));
+	$("#temp-current").html(tempCurrent);
+	
+	tempTarget = parseFloat(get("targetTemperature", "target_temperature"));
+	$("#temp-target").html(tempTarget);
+	$("#tempInput").val(tempTarget);
+	
+	$("#tempInput").focus(function() {
+		// disallow selection of the input field
+		$("#tempInput").blur();
+	});
+	
     $('#setTempBtn').click(function () {
-        var targetTemp = $('#tempInput').val();
+        var targetTemp = $("#tempInput").val();
         put("targetTemperature", "target_temperature", targetTemp);
-        $('#tempOutput').html(targetTemp);
-        $('.output').fadeIn(500);
-        $('.output').delay(1200).fadeOut(700);
-        
-        var heated = false;
-        var interval = setInterval(function () {
-            if (heated == true) {
-                clearInterval(interval);
-            } else {
-                var currentTemp = get("currentTemperature", "current_temperature");
-                $('#targetLoading').html(currentTemp + '<img src="img/fire.png" height="20px" />');
-                $('#targetLoading').css('visibility', 'visible').animate({opacity: 100});
-                $('#targetLoading').delay(1200).animate({opacity: 0});
-                if (parseInt(currentTemp, 10) == parseInt(targetTemp, 10)) {
-                    heated = true;
-                } else {
-                    heated = false;
-                }
-            }
-        }, 1000);
+        $("#temp-target").html(targetTemp);
     });
 });
