@@ -1,10 +1,13 @@
 $(document).ready(function () {
-    $('body').css('overflow-y','hidden');
-    
     //get the weekprogram
     var weekProgram = getWeekProgram();
-    $('#textData').append(weekProgram);
-    
+    var day = $(weekProgram).text();
+    consol.log(day);
+});
+
+$(document).ready(function () {
+    $('body').css('overflow-y', 'hidden');
+
     //Click interaction with tabs
     var animTime = 300,
         clickPolice = false;
@@ -31,13 +34,13 @@ $(document).ready(function () {
                 clickPolice = false;
             }, animTime);
 
-            $(".acc-btn").each(function () {
+            $('.acc-btn').each(function () {
                 $(this).not('.selected').hide();
-                console.log("hide and seek")
+                console.log('hide and seek')
             });
         }
     });
-    
+
     $(document).on('touchstart click', '.selected', function () {
         if (!clickPolice) {
             clickPolice = true;
@@ -46,20 +49,20 @@ $(document).ready(function () {
                 targetHeight = $('.acc-content-inner').eq(currIndex).outerHeight();
 
             $('.selected').removeClass('selected');
-            $('.selected').css('margin-top','10%');
+            $('.selected').css('margin-top', '10%');
 
             $('.acc-content').stop().animate({
                 height: 0
             }, animTime);
-            
+
 
             setTimeout(function () {
                 clickPolice = false;
             }, animTime);
 
-            $(".acc-btn").each(function () {
+            $('.acc-btn').each(function () {
                 $(this).not('.selected').show();
-                console.log("Nimma");
+                console.log('Nimma');
             });
         }
     });
