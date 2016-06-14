@@ -1,71 +1,68 @@
-body{
+body {
     background-color: white;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
 }
 
-#header{
+#header {
     background-color: #F44336;
     text-align: center;
     font-size: 1.5em;
     color: white;
 }
 
-.slider{
+.slider {
     margin: 0 auto;
     text-align: center;
-	height: 220px !important;
-	overflow: hidden;
+    height: 220px !important;
+    overflow: hidden;
 }
 
-.slider p{
+.slider p {
     font-size: 1.5em;
-    
 }
 
-.buttonContainer{
+.buttonContainer {
     width: 100%;
     height: auto;
-    
 }
 
-.btn{
+.btn {
     width: 50%;
     position: relative;
     margin: 0 auto;
     margin-left: 25%;
 }
 
-.output{
+.output {
     display: none;
 }
 
-.output p{
+.output p {
     margin-top: 15px;
     text-align: center;
     font-size: 1.5em;
     font-weight: 700;
 }
 
-#dataOverview{
+#dataOverview {
     font-size: 2em;
     height: 35px;
     background-color: aqua;
 }
 
-
 .temperature-table {
-	width: 50%;
-	min-width: 120px;
-	margin: auto;
+    width: 50%;
+    min-width: 120px;
+    margin: auto;
 }
 
 .temperature-table td {
-	text-align: right;
+    text-align: right;
 }
 
-.row .btn{
+.row .btn {
     display: block;
     height: 50px;
     width: 90%;
@@ -79,44 +76,43 @@ body{
     vertical-align: middle;
 }
 
-
-
 /*CSS for the Week buttons*/
+
 .acc-container {
-  width:90%;
-  margin:5px auto 0 auto;
-  overflow:hidden;
+    width: 90%;
+    margin: 5px auto 0 auto;
+    overflow: hidden;
 }
 
 .acc-btn {
-    width:100%;
-    margin:0 auto;
-    cursor:pointer;
+    width: 100%;
+    margin: 0 auto;
+    cursor: pointer;
     margin-top: 10%;
 }
 
-.acc-btn h1{
+.acc-btn h1 {
     text-align: center;
     background-color: #FF4081;
     color: white;
-    width:100%;
-    margin:0 auto;
-    cursor:pointer;
+    width: 100%;
+    margin: 0 auto;
+    cursor: pointer;
 }
 
 .acc-content {
-  height:0px;
-  width:100%;
-  margin:0 auto;
-  overflow:hidden;
+    height: 0px;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
 }
 
 .acc-content-inner {
-  padding:30px;
+    padding: 30px;
 }
 
 .open {
-  height: auto;
+    height: auto;
 }
 
 .selected {
