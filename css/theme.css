@@ -12,17 +12,6 @@ body {
     color: white;
 }
 
-.slider {
-    margin: 0 auto;
-    text-align: center;
-    height: 220px !important;
-    overflow: hidden;
-}
-
-.slider p {
-    font-size: 1.5em;
-}
-
 .buttonContainer {
     width: 100%;
     height: auto;
@@ -117,4 +106,81 @@ body {
 
 .selected {
     margin-top: 0px;
+}
+
+
+.slider {
+    margin: 0 auto;
+    text-align: center;
+    height: 180px !important;
+	position: relative;
+}
+
+#tempInputReadonly {
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	bottom: 0px;
+	z-index: 1000;
+}
+
+#tempInputDisplay {
+	height: 100px;
+	text-align: center;
+	position: relative;
+	top: -150px;
+	bottom: 0;
+	z-index: 100;
+	color: #F44336;
+	width:100px;
+	margin: auto;
+}
+
+#tempInputTitle { 
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 80px;
+}
+
+#tempInputFormatted {
+	font-size: 300%;
+	position: absolute;
+	top: 20px;
+	left: 0px;
+	right: 0px;
+	bottom: 30px;
+	line-height: 50px;
+}
+
+#tempInputFormatted > small {
+	font-size: 45%;
+}
+
+#tempCurrent {
+	width: 240px;
+	margin: auto;
+}
+
+#programButtons {
+	text-align: center;
+	padding: 20px;
+}
+
+/* override primary button colors */
+.btn-primary {
+	background-color: #F44336 !important;
+	border-color: #DD3A2E !important;
+}
+
+.btn-primary:focus, .btn-primary:active {
+	background-color: #EA4438 !important;
+	border-color: #D62A1D !important;
+}
+
+.btn-primary:hover {
+	background-color: #F9584D !important;
+	border-color: #E54237 !important;
 }
