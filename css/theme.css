@@ -160,6 +160,12 @@ body {
 	padding: 20px;
 }
 
+.gotoweekoverview {
+	position: absolute;
+	right: 30px;
+	top: 0px;
+}
+
 /* override primary button colors */
 .btn-primary {
 	background-color: #F44336 !important;
