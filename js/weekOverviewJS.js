@@ -1,7 +1,8 @@
 $(document).ready(function () {
     //get the weekprogram
     var weekProgram = getWeekProgram();
-    var dayTemperature = get('dayTemperature', 'day_temperature');
+    var dayTemperature = get("dayTemperature", "day_temperature");
+    console.log(dayTemperature);
     var weekProgramString = JSON.stringify(weekProgram);
     var obj = $.parseJSON(weekProgramString);
 
