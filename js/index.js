@@ -4,21 +4,22 @@ var tempTarget = 0;
 var manual = false;
 
 function setup() {	
-	$("#tempInput").slider({
-		formatter: function(value) {
-			return (Math.round(value * 10) / 10) + "°C";
-		}
-	}).on("change", function() {
-		var value = $(this).val();
-		$("#tempTargetFormatted").html(formatDeg(value));
-	});
-
 	tempCurrent = parseFloat(get("currentTemperature", "current_temperature"));
 	$("#tempCurrentFormatted").html(formatDeg(tempCurrent));
 	
 	tempTarget = parseFloat(get("targetTemperature", "target_temperature"));
-	$("#tempInputSlider")
-		.slider('setValue', tempTarget)
+	$("#tempTargetFormatted").html(formatDeg(tempTarget));
+	$("#tempInput")
+		.slider({
+			formatter: function(value) {
+				return (Math.round(value * 10) / 10) + "°C";
+			}
+		})
+		.on("change", function() {
+			var value = $(this).val();
+			$("#tempTargetFormatted").html(formatDeg(value));
+		})
+		.slider("setValue", tempTarget)
 		.on("slideStop", function(value) {
 			tempTarget = $("#tempInput").val();
 			saveTargetTemp();
