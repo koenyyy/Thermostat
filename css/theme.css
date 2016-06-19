@@ -32,6 +32,10 @@ body {
     color: white;
 }
 
+#header a {
+	color: white;
+}
+
 .buttonContainer {
     width: 100%;
     height: auto;
@@ -199,8 +203,15 @@ body {
 
 .gotoweekoverview {
 	position: absolute;
-	right: 30px;
+	right: 0px;
 	top: 0px;
+	display: block;
+	padding-right: 30px;
+}
+.gotoweekoverview img {
+	position: absolute;
+	right: 0px;
+	left: auto !important;
 }
 
 .redredred {
