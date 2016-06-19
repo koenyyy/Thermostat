@@ -156,7 +156,7 @@ $(document).ready(function () {
             console.log("kip");
             $('.fromToContainer').css('visibility', 'hidden');
             var currIndex = $(this).index('.acc-btn'),
-                targetHeight = 392;
+                targetHeight = 450;
 
             $('.acc-btn h1').removeClass('selected');
             $(this).find('h1').addClass('selected');
@@ -187,7 +187,7 @@ $(document).ready(function () {
             console.log('Nimma');
 
             var currIndex = $(this).index('.acc-btn'),
-                targetHeight = 392;
+                targetHeight = 450;
             console.log(targetHeight);
 
             $('.selected').removeClass('selected');
