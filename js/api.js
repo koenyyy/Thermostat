@@ -91,7 +91,11 @@ function getWeekProgram() {
                         if ($(this).attr('type') == Type.Day) {
                             getProgram(day).push([$(this).text(), '00:00']);
                         } else {
-                            getProgram(day)[getProgram(day).length - 1][1] = $(this).text();
+							if (getProgram(day).length - 1 < 0) {
+								console.log("WHOOPS. No day switch set yet, but night switch found.");
+							} else {
+								getProgram(day)[getProgram(day).length - 1][1] = $(this).text();
+							}
                         }
                     }
                 })
