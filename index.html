@@ -19,8 +19,8 @@
         <div class="container-fluid container-dashboard">
 			<div id="programButtons">
 				<div class="btn-group btn-group-lg" role="group">
-					<span class="btn btn-default" id="buttonManual">Manual</span>
 					<span class="btn btn-default" id="buttonProgram">Program</span>
+					<span class="btn btn-default" id="buttonManual">Override</span>
 				</div>	
 			</div>
         </div>
@@ -29,6 +29,7 @@
 			<strong>Target temperature</strong>
 			<div id="tempTargetFormatted"></div>
 			<input type="text" name="tempInput" id="tempInput" data-slider-id="tempInputSlider" data-provide="slider" data-slider-min="5" data-slider-max="30" data-slider-step="0.1" data-slider-value="20" data-slider-tooltip="hide">
+			<p id="tempTargetDetails"></p>
         </div>
 		
 		<div class="container-fluid row container-dashboard">

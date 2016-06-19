@@ -2,16 +2,8 @@
 var tempCurrent = 0;
 var tempTarget = 0;
 var manual = false;
-var knob; 
 
 function setup() {	
-	tempCurrent = parseFloat(get("currentTemperature", "current_temperature"));
-	$("#tempCurrentFormatted").html(formatDeg(tempCurrent));
-	
-	tempTarget = parseFloat(get("targetTemperature", "target_temperature"));
-	$("#tempInput").val(tempTarget);
-	updateTempInputDisplay(tempTarget);
-	
 	$("#tempInput").slider({
 		formatter: function(value) {
 			return (Math.round(value * 10) / 10) + "°C";
@@ -20,6 +12,17 @@ function setup() {
 		var value = $(this).val();
 		$("#tempTargetFormatted").html(formatDeg(value));
 	});
+
+	tempCurrent = parseFloat(get("currentTemperature", "current_temperature"));
+	$("#tempCurrentFormatted").html(formatDeg(tempCurrent));
+	
+	tempTarget = parseFloat(get("targetTemperature", "target_temperature"));
+	$("#tempInputSlider")
+		.slider('setValue', tempTarget)
+		.on("slideStop", function(value) {
+			tempTarget = $("#tempInput").val();
+			saveTargetTemp();
+		});
 	
 	manual = (get("weekProgramState", "week_program_state") == 'off');
 	if (manual) {
@@ -33,7 +36,7 @@ function setup() {
 }
 
 function tick() {
-	updateCurrentTemperature();
+	updateTemperatures();
 	updateDateTime();
 	// updateTempInputDisplay is called by the spinner
 }
@@ -41,7 +44,7 @@ function tick() {
 $(document).ready(function () {
 	setup();
 	// set the update function to run every second
-	setInterval(tick, 1000);
+	setInterval(tick, 3000);
 });
 
 function formatDeg(value) {
@@ -54,8 +57,14 @@ function formatDeg(value) {
 	return '<strong>' + parts[0] + '</strong><small>.' + parts[1] + '&deg;C</small>';
 }
 
-function updateCurrentTemperature() {
+function updateTemperatures() {
 	var tempNewCurrent = parseFloat(get("currentTemperature", "current_temperature"));
+	var tempNewTarget = parseFloat(get("targetTemperature", "target_temperature"));
+	
+	if (tempNewTarget != tempTarget) {
+		tempTarget = tempNewTarget;
+		$("#tempInputSlider").slider('setValue', tempTarget);
+	}
 	
 	if (tempNewCurrent > tempCurrent) {
 		$("#tempCurrentIcon")
@@ -73,10 +82,6 @@ function updateCurrentTemperature() {
 	
 	tempCurrent = tempNewCurrent;
 	$("#tempCurrentFormatted").html(formatDeg(tempCurrent));
-}
-
-function updateTempInputDisplay(value) {
-	$("#tempInputFormatted").html(formatDeg(value));
 }
 
 function updateDateTime() {
@@ -99,6 +104,8 @@ function showManual() {
 	$("#tempInputReadonly").hide();
 	
 	$("#tempInputTitle").html("Manual:");
+	
+	$("#tempTargetDetails").html("The target temperature will remain on this value until the thermostat is set back to Program mode.");
 }
 
 function showProgram() {
@@ -109,4 +116,6 @@ function showProgram() {
 	$("#tempInputReadonly").show();
 	
 	$("#tempInputTitle").html("Program:");
+	
+	$("#tempTargetDetails").html("The target temperature will remain on this value until the next programmed switch.");
 }
