@@ -23,6 +23,15 @@ body {
     margin: 0;
 }
 
+#header a p{
+    display: inline-block;
+    position: absolute;
+    left: 25px;
+    text-align: left;
+    margin: 0;
+    color: white;
+}
+
 .buttonContainer {
     width: 100%;
     height: auto;
@@ -89,6 +98,7 @@ body {
     margin: 0 auto;
     cursor: pointer;
     margin-top: 10px;
+    margin-bottom: 5px;
     height: 65px;
     
 }
@@ -223,10 +233,10 @@ body {
 
 .removeEdit > p {
     width: 100%;
-    line-height: 35px;
+    line-height: 60px;
     text-align: center;
     border-radius: 0;
-    background-color: #FF4081;
+    background-color: #F44336;
     vertical-align: middle;
     color: white;
 }
@@ -237,7 +247,7 @@ body {
     margin: 0;
     padding: 0;
     position: relative;
-    line-height: 35px;
+    line-height: 60px;
     border: 0;
     border-radius: 0;
 }
