@@ -1,7 +1,10 @@
 // global application variables
 var tempCurrent = 0;
 var tempTarget = 0;
+var tempNight = 0;
+var tempDay = 0;
 var manual = false;
+var inputSlider;
 
 function setup() {	
 	tempCurrent = parseFloat(get("currentTemperature", "current_temperature"));
@@ -9,21 +12,36 @@ function setup() {
 	
 	tempTarget = parseFloat(get("targetTemperature", "target_temperature"));
 	$("#tempTargetFormatted").html(formatDeg(tempTarget));
-	$("#tempInput")
-		.slider({
-			formatter: function(value) {
-				return (Math.round(value * 10) / 10) + "°C";
-			}
-		})
-		.on("change", function() {
+	inputSlider = $("#tempInput").slider({
+		formatter: function(value) {
+			return (Math.round(value * 10) / 10) + "°C";
+		}
+	});
+		
+	inputSlider.on("change", function() {
 			var value = $(this).val();
 			$("#tempTargetFormatted").html(formatDeg(value));
 		})
 		.slider("setValue", tempTarget)
-		.on("slideStop", function(value) {
+		.on("slideStop", function(state) {
 			tempTarget = $("#tempInput").val();
 			saveTargetTemp();
 		});
+		
+	tempNight = parseFloat(get("nightTemperature", "night_temperature"));
+	tempDay = parseFloat(get("dayTemperature", "day_temperature"));
+	$("#tempDayNightInput").slider({})
+		.on("change", function(state) {
+			tempNight = state.value.newValue[0];
+			tempDay = state.value.newValue[1];
+			$("#tempNightFormatted").html(formatDeg(tempNight));
+			$("#tempDayFormatted").html(formatDeg(tempDay));
+		})
+		.on("slideStop", function(state) {
+			put("nightTemperature", "night_temperature", tempNight);
+			put("dayTemperature", "day_temperature", tempDay);
+		})
+		.slider("setValue", [tempNight, tempDay], false, true);
 	
 	manual = (get("weekProgramState", "week_program_state") == 'off');
 	if (manual) {
@@ -64,7 +82,7 @@ function updateTemperatures() {
 	
 	if (tempNewTarget != tempTarget) {
 		tempTarget = tempNewTarget;
-		$("#tempInputSlider").slider('setValue', tempTarget);
+		inputSlider.slider('setValue', tempTarget, false, true);
 	}
 	
 	if (tempNewCurrent > tempCurrent) {
@@ -100,23 +118,19 @@ function showManual() {
 	$("#buttonManual").addClass("btn-primary").removeClass("btn-default");
 	$("#buttonProgram").removeClass("btn-primary").addClass("btn-default");
 	
-	//$("tempInput").data("fgColor", "#F44336");
-	$(".knob").trigger("configure", {"fgColor": "#F44336"});
-	$("#tempInputReadonly").hide();
+	put("weekProgramState", "week_program_state", "off");
 	
-	$("#tempInputTitle").html("Manual:");
+	$("#tempTargetDetails").html("The target temperature is set to this value until the thermostat is put back in Program mode.");
 	
-	$("#tempTargetDetails").html("The target temperature will remain on this value until the thermostat is set back to Program mode.");
+	$("#programControls").fadeOut();
 }
 
 function showProgram() {
 	$("#buttonManual").removeClass("btn-primary").addClass("btn-default");
 	$("#buttonProgram").addClass("btn-primary").removeClass("btn-default");
 	
-	$(".knob").trigger("configure", {"fgColor": "#969696"});
-	$("#tempInputReadonly").show();
+	put("weekProgramState", "week_program_state", "on");
 	
-	$("#tempInputTitle").html("Program:");
-	
-	$("#tempTargetDetails").html("The target temperature will remain on this value until the next programmed switch.");
+	$("#tempTargetDetails").html("The target temperature will follow the week program. You can override it temporarily here until the next switch or midnight.");
+	$("#programControls").fadeIn();
 }

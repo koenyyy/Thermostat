@@ -136,11 +136,11 @@ body {
 	margin: 16px auto;
 }
 
-#tempInputSlider .slider-handle {
+#tempInputSlider .slider-handle, #tempDayNightInputSlider .slider-handle {
 	background: #F44336 !important;
 }
 
-#tempInputSlider .slider-selection {
+#tempInputSlider .slider-selection, #tempDayNightInputSlider .slider-selection {
 	background: #F2A9A4;
 }
 
@@ -148,7 +148,31 @@ body {
 	color: #F44336;
 	font-size: 200%;
 	text-align: center;
+	margin-top: 30px 0;
+}
+
+#tempNightFormatted {
+	color: black;
+	font-size: 150%;
+	text-align: center;
+	margin-top: 30px 0;
+	width: 50%;
+	text-align: right;
+}
+#tempDayFormatted {
+	color: #F44336;
+	font-size: 150%;
+	text-align: center;
 	margin-top: 15px 0;
+	width: 50%;
+	float: right;
+	text-align: left;
+}
+
+#tempDayFormatted:before {
+	font-size: 150%;
+	color: black;
+	content: "/";
 }
 
 #tempCurrent {
@@ -157,13 +181,17 @@ body {
 
 #programButtons {
 	text-align: center;
-	padding: 20px;
+	padding: 0 20px;
 }
 
 .gotoweekoverview {
 	position: absolute;
 	right: 30px;
 	top: 0px;
+}
+
+.redredred {
+	color: #F44336;
 }
 
 /* override primary button colors */

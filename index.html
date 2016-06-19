@@ -27,7 +27,7 @@
 				</div>	
 			</div>
         </div>
-        
+		
         <div class="container-fluid container-dashboard" id="manualControls">
 			<strong>Target temperature</strong>
 			<div id="tempTargetFormatted"></div>
@@ -38,14 +38,22 @@
 		<div class="container-fluid row container-dashboard">
 			<table id="tempCurrent">
 				<tr>
-					<th>Room temperature:</th>
+					<th>Room temperature</th>
 					<td>
 						<span class="glyphicon glyphicon-arrow-up" id="tempCurrentIcon"></span>
 						<span id="tempCurrentFormatted"></span>
 					</td>
 				</tr>
 			</table>
-		</div>   
+		</div> 
+		
+        <div class="container-fluid container-dashboard" id="programControls">
+			<strong>Night and <span class="redredred">Day</span> temperatures</strong>
+			<div id="tempDayFormatted"></div>
+			<div id="tempNightFormatted"></div>
+			<input type="text" name="tempDayNightInput" id="tempDayNightInput" data-slider-id="tempDayNightInputSlider" data-provide="slider" data-slider-min="5" data-slider-max="30" data-slider-step="0.1" data-slider-value="[15,20]" data-slider-tooltip="hide">
+			<p>These temperatures control the week program. You can override these by setting the target temperature.</p>
+        </div> 	
 
 		<script src="dist/js/jquery-1.12.4.min.js"></script>
 		<script src="dist/js/bootstrap.js"></script>
