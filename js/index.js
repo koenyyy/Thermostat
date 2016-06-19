@@ -4,9 +4,7 @@ var tempTarget = 0;
 var manual = false;
 var knob; 
 
-function setup() {
-	setupSpinner();
-		
+function setup() {	
 	tempCurrent = parseFloat(get("currentTemperature", "current_temperature"));
 	$("#tempCurrentFormatted").html(formatDeg(tempCurrent));
 	
@@ -14,10 +12,14 @@ function setup() {
 	$("#tempInput").val(tempTarget);
 	updateTempInputDisplay(tempTarget);
 	
-	// disallow selection of the input field
-	$("#tempInput").focus(function() {
-		$("#tempInput").blur();
-	}).hide(); // also hide it.
+	$("#tempInput").slider({
+		formatter: function(value) {
+			return (Math.round(value * 10) / 10) + "°C";
+		}
+	}).on("change", function() {
+		var value = $(this).val();
+		$("#tempTargetFormatted").html(formatDeg(value));
+	});
 	
 	manual = (get("weekProgramState", "week_program_state") == 'off');
 	if (manual) {
@@ -85,61 +87,6 @@ function updateDateTime() {
 
 function saveTargetTemp() {
 	put("targetTemperature", "target_temperature", tempTarget);
-}
-
-function setupSpinner() {
-	knob = $(".knob").knob({
-		change : function (value) {
-			updateTempInputDisplay(value);
-		},
-		release : function (value) {
-			tempTarget = value;
-			saveTargetTemp();
-			console.log("release : " + value);
-			
-		},
-		cancel : function () {
-			console.log("cancel : ", this);
-		},
-		format : function (value) {
-			return Math.floor(value) + '.' + Math.floor(value % 1 * 10);
-		},
-		draw : function () {
-
-			// "tron" case
-			if(this.$.data('skin') == 'tron') {
-
-				this.cursorExt = 0.3;
-
-				var a = this.arc(this.cv); // Arc
-				var pa; // Previous arc
-				var r = 1;
-
-				this.g.lineWidth = this.lineWidth;
-
-				if (this.o.displayPrevious) {
-					pa = this.arc(this.v);
-					this.g.beginPath();
-					this.g.strokeStyle = this.pColor;
-					this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, pa.s, pa.e, pa.d);
-					this.g.stroke();
-				}
-
-				this.g.beginPath();
-				this.g.strokeStyle = r ? this.o.fgColor : this.fgColor ;
-				this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, a.s, a.e, a.d);
-				this.g.stroke();
-
-				this.g.lineWidth = 2;
-				this.g.beginPath();
-				this.g.strokeStyle = this.o.fgColor;
-				this.g.arc( this.xy, this.xy, this.radius - this.lineWidth + 1 + this.lineWidth * 2 / 3, 0, 2 * Math.PI, false);
-				this.g.stroke();
-
-				return false;
-			}
-		}
-	});
 }
 
 

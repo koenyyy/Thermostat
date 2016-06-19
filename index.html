@@ -8,21 +8,15 @@
 
 		<title>Thermostat</title>
         <link type="text/css" href="dist/css/bootstrap.min.css" rel="stylesheet">
-        <link type="text/css" href="css/theme.css" rel="stylesheet">
-        
-        <script src="dist/js/jquery-1.12.4.min.js"></script>
-		<script src="dist/js/jquery.knob.min.js"></script>
-		
-        <script src='js/api.js'></script>
-        <script src='js/index.js'></script>
-		
+		<link type="text/css" href="dist/css/bootstrap-slider.min.css" rel="stylesheet">
+        <link type="text/css" href="css/theme.css" rel="stylesheet">	
 	</head>
 	<body> 
         <div class="container-fluid">
 			<div id="header" class="row"><span id="dateTime">Sunday, 12:34</span></div>	
         </div>
 		
-        <div class="container-fluid">
+        <div class="container-fluid container-dashboard">
 			<div id="programButtons">
 				<div class="btn-group btn-group-lg" role="group">
 					<span class="btn btn-default" id="buttonManual">Manual</span>
@@ -31,15 +25,13 @@
 			</div>
         </div>
         
-        <div class="container-fluid">
-			<div class="slider">
-				<input id="tempInput" class="knob" data-angleOffset=-120 data-angleArc=240 data-fgColor="#F44336" data-rotation="clockwise" value="20" data-min="5" data-max="30" data-step="0.1">
-				<div id="tempInputDisplay">
-					<div id="tempInputTitle">Manual:</div>
-					<div id="tempInputFormatted"></div>
-				</div>
-				<div id="tempInputReadonly"></div>
-			</div>
+        <div class="container-fluid container-dashboard" id="manualControls">
+			<strong>Target temperature</strong>
+			<div id="tempTargetFormatted"></div>
+			<input type="text" name="tempInput" id="tempInput" data-slider-id="tempInputSlider" data-provide="slider" data-slider-min="5" data-slider-max="30" data-slider-step="0.1" data-slider-value="20" data-slider-tooltip="hide">
+        </div>
+		
+		<div class="container-fluid row container-dashboard">
 			<table id="tempCurrent">
 				<tr>
 					<th>Room temperature:</th>
@@ -49,9 +41,14 @@
 					</td>
 				</tr>
 			</table>
-        </div>
+		</div>   
+
+		<script src="dist/js/jquery-1.12.4.min.js"></script>
+		<script src="dist/js/bootstrap.js"></script>
+		<script src="dist/js/bootstrap-slider.min.js"></script>
 		
-		<div class="container-fluid row">
-		</div>      
+        <script src='js/api.js'></script>
+        <script src='js/index.js'></script>		
+		
     </body>
 </html>
