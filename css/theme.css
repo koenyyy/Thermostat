@@ -192,7 +192,7 @@ body {
     cursor: pointer;
 }
 
-#sendSwitch{
+.sendSwitch{
     margin-top: 10px;
 }
 

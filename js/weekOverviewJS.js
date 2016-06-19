@@ -1,16 +1,12 @@
-$(document).ready(function () {
-    //get the weekprogram
+//function to load and show te weekprogram data
+function showWeekprogram() {
+    
+    // Getting the weekprogram and dayTemperature. Also make a String out of the JSON weekprogram
     var weekProgram = getWeekProgram();
     var dayTemperature = get("dayTemperature", "day_temperature");
     var weekProgramString = JSON.stringify(weekProgram);
     var obj = $.parseJSON(weekProgramString);
 
-    //adding a period for testing purposes only
-    //addPeriod('Tuesday', '19:00', '19:10');
-    //addPeriod('Sunday', '19:40', '19:50');
-    //removePeriod('Monday', 4);    
-
-    //go through all days from json xml thing and display the according switches
     $.each(obj, function (index, value) {
         if (index == 'Monday') {
             //check if there are already 5 switches if so, no button to add is displayed
@@ -20,7 +16,7 @@ $(document).ready(function () {
 
             for (i = 0; i < obj['Monday'].length; i++) {
                 var value = obj['Monday'][i].toString().replace(",", " - ");
-                $('#MondayContent').prepend('<div class="removeEdit"><p>' + value + " at " + dayTemperature + "°C" + '</p><span id="'+i+'" class="btn btn-primary removeBtn"><img src="img/garbage.png" width="50%"></span></div>');
+                $('#MondayContent').prepend('<div class="removeEdit"><p>' + value + " at " + dayTemperature + "°C" + '</p><span id="' + i + '" class="btn btn-primary removeBtn"><img src="img/garbage.png" width="50%"></span></div>');
             }
         }
 
@@ -31,7 +27,7 @@ $(document).ready(function () {
             }
             for (i = 0; i < obj['Tuesday'].length; i++) {
                 var value = obj['Tuesday'][i].toString().replace(",", " - ");
-                $('#TuesdayContent').prepend('<div class="removeEdit"><p>' + value + " at " + dayTemperature + "°C" + '</p><span id="'+i+'" class="btn btn-primary removeBtn"><img src="img/garbage.png" width="50%"></span></div>');
+                $('#TuesdayContent').prepend('<div class="removeEdit"><p>' + value + " at " + dayTemperature + "°C" + '</p><span id="' + i + '" class="btn btn-primary removeBtn"><img src="img/garbage.png" width="50%"></span></div>');
             }
         }
 
@@ -43,7 +39,7 @@ $(document).ready(function () {
             for (i = 0; i < obj['Wednesday'].length; i++) {
                 var value = obj['Wednesday'][i].toString().replace(",", " - ");
 
-                $('#WednesdayContent').prepend('<div class="removeEdit"><p>' + value + " at " + dayTemperature + "°C" + '</p><span id="'+i+'" class="btn btn-primary removeBtn"><img src="img/garbage.png" width="50%"></span></div>');
+                $('#WednesdayContent').prepend('<div class="removeEdit"><p>' + value + " at " + dayTemperature + "°C" + '</p><span id="' + i + '" class="btn btn-primary removeBtn"><img src="img/garbage.png" width="50%"></span></div>');
             }
         }
 
@@ -55,7 +51,7 @@ $(document).ready(function () {
             for (i = 0; i < obj['Thursday'].length; i++) {
                 var value = obj['Thursday'][i].toString().replace(",", " - ");
 
-                $('#ThursdayContent').prepend('<div class="removeEdit"><p>' + value + " at " + dayTemperature + "°C" + '</p><span id="'+i+'" class="btn btn-primary removeBtn"><img src="img/garbage.png" width="50%"></span></div>');
+                $('#ThursdayContent').prepend('<div class="removeEdit"><p>' + value + " at " + dayTemperature + "°C" + '</p><span id="' + i + '" class="btn btn-primary removeBtn"><img src="img/garbage.png" width="50%"></span></div>');
             }
 
         }
@@ -67,7 +63,7 @@ $(document).ready(function () {
             }
             for (i = 0; i < obj['Friday'].length; i++) {
                 var value = obj['Friday'][i].toString().replace(",", " - ");
-                $('#FridayContent').prepend('<div class="removeEdit"><p>' + value + " at " + dayTemperature + "°C" + '</p><span id="'+i+'" class="btn btn-primary removeBtn"><img src="img/garbage.png" width="50%"></span></div>');
+                $('#FridayContent').prepend('<div class="removeEdit"><p>' + value + " at " + dayTemperature + "°C" + '</p><span id="' + i + '" class="btn btn-primary removeBtn"><img src="img/garbage.png" width="50%"></span></div>');
             }
         }
 
@@ -78,7 +74,7 @@ $(document).ready(function () {
             }
             for (i = 0; i < obj['Saturday'].length; i++) {
                 var value = obj['Saturday'][i].toString().replace(",", " - ");
-                $('#SaturdayContent').prepend('<div class="removeEdit"><p>' + value + " at " + dayTemperature + "°C" + '</p><span id="'+i+'" class="btn btn-primary removeBtn"><img src="img/garbage.png" width="50%"></span></div>');
+                $('#SaturdayContent').prepend('<div class="removeEdit"><p>' + value + " at " + dayTemperature + "°C" + '</p><span id="' + i + '" class="btn btn-primary removeBtn"><img src="img/garbage.png" width="50%"></span></div>');
             }
         }
 
@@ -90,10 +86,16 @@ $(document).ready(function () {
             for (i = 0; i < obj['Sunday'].length; i++) {
                 var value = obj['Sunday'][i].toString().replace(",", " - ");
 
-                $('#SundayContent').prepend('<div class="removeEdit"><p>' + value + " at " + dayTemperature + "°C" + '</p><span id="'+i+'" class="btn btn-primary removeBtn"><img src="img/garbage.png" width="50%"></span></div>');
+                $('#SundayContent').prepend('<div class="removeEdit"><p>' + value + " at " + dayTemperature + "°C" + '</p><span id="' + i + '" class="btn btn-primary removeBtn"><img src="img/garbage.png" width="50%"></span></div>');
             }
         }
     });
+}
+
+
+$(document).ready(function () {
+    //go through all days from json xml thing and display the according switches    
+    showWeekprogram();
 
     ///////////////////////////////////////////////////
     //Koen, you need to fix the way input can be done//
@@ -106,16 +108,26 @@ $(document).ready(function () {
         console.log(day + from + to);
         addPeriod(day, from, to);
         $('.fromToContainer').css('visibility', 'hidden');
-        //Need a refresh to show the just added data. make a function out of it
-    });
-    
-    //to delete a switch with id nr. i
-    $('body').on('click', '.removeBtn', function () {
-        var i = $(".removeBtn").closest("span").attr("id"); 
-        removePeriod('Monday', i);
+        
+        //A refresh to show the just added data.
+        $(this).closest('div.acc-content-inner').find('span.addSwitchBtn').remove();
+        $(this).closest('div.acc-content-inner').find('div.removeEdit').remove();
+        showWeekprogram();
     });
 
-    //to show the switch input fields
+    //to delete a switch with id nr. i //////////////kijken kijken kijken
+    $('body').on('click', '.removeBtn', function () {
+        var i = $(this).closest("div.removeEdit").find("span").attr("id");
+        var parentID = $(this).closest('div.acc-content-inner').attr('id')
+        var day = parentID.replace("Content", "");
+        removePeriod(day, i);
+        console.log(day+"   " +i);
+        $(this).closest('div.acc-content-inner').find('span.addSwitchBtn').remove();
+        $(this).closest('div.acc-content-inner').find('div.removeEdit').remove();
+        showWeekprogram();
+    });
+
+    //to show the switch input fields when you want to add a new switch
     $('body').on('click', '.addSwitchBtn', function () {
         $('.fromToContainer').css('visibility', 'visible');
     });
