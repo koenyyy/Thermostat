@@ -1,6 +1,6 @@
 //function to load and show te weekprogram data
 function showWeekprogram() {
-    
+
     // Getting the weekprogram and dayTemperature. Also make a String out of the JSON weekprogram
     var weekProgram = getWeekProgram();
     var dayTemperature = get("dayTemperature", "day_temperature");
@@ -108,10 +108,14 @@ $(document).ready(function () {
         console.log(day + from + to);
         addPeriod(day, from, to);
         $('.fromToContainer').css('visibility', 'hidden');
-        
         //A refresh to show the just added data.
-        $(this).closest('div.acc-content-inner').find('span.addSwitchBtn').remove();
-        $(this).closest('div.acc-content-inner').find('div.removeEdit').remove();
+        $('.acc-content-inner').each(function () {
+            $(this).find('span.addSwitchBtn').remove();
+        });
+        $('.acc-content-inner').each(function () {
+            $(this).find('div.removeEdit').remove();
+        });
+
         showWeekprogram();
     });
 
@@ -121,9 +125,13 @@ $(document).ready(function () {
         var parentID = $(this).closest('div.acc-content-inner').attr('id')
         var day = parentID.replace("Content", "");
         removePeriod(day, i);
-        console.log(day+"   " +i);
-        $(this).closest('div.acc-content-inner').find('span.addSwitchBtn').remove();
-        $(this).closest('div.acc-content-inner').find('div.removeEdit').remove();
+        console.log(day + "   " + i);
+        $('.acc-content-inner').each(function () {
+            $(this).find('span.addSwitchBtn').remove();
+        });
+        $('.acc-content-inner').each(function () {
+            $(this).find('div.removeEdit').remove();
+        });
         showWeekprogram();
     });
 
@@ -148,7 +156,7 @@ $(document).ready(function () {
             console.log("kip");
             $('.fromToContainer').css('visibility', 'hidden');
             var currIndex = $(this).index('.acc-btn'),
-                targetHeight = $('.acc-content-inner').eq(currIndex).outerHeight();
+                targetHeight = 392;
 
             $('.acc-btn h1').removeClass('selected');
             $(this).find('h1').addClass('selected');
@@ -179,7 +187,8 @@ $(document).ready(function () {
             console.log('Nimma');
 
             var currIndex = $(this).index('.acc-btn'),
-                targetHeight = $('.acc-content-inner').eq(currIndex).outerHeight();
+                targetHeight = 392;
+            console.log(targetHeight);
 
             $('.selected').removeClass('selected');
             $('.selected').css('margin-top', '10%');
