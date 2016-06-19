@@ -184,3 +184,26 @@ body {
 	background-color: #F9584D !important;
 	border-color: #E54237 !important;
 }
+
+.acc-content-inner > p{
+    display: block;
+    width: 100%;
+    line-height: 35px;
+    text-align: center;
+    border-color: #FF4081;
+    border-radius: 0;
+    background-color: #FF4081;
+    vertical-align: middle;
+    color: white;
+}
+
+.addSwitchBtn{
+    color: white;
+    background-color: #FF4081;
+    cursor: pointer;
+}
+
+.inputField{
+    display: inline-block;
+    width: 49%;
+}
