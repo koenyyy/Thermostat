@@ -31,7 +31,7 @@ $(document).ready(function () {
             }
             for (i = 0; i < obj['Tuesday'].length; i++) {
                 var value = obj['Tuesday'][i].toString().replace(",", " - ");
-                $('#TuesdayContent').prepend('<p>' + value + " at " + dayTemperature + "°C" + '</p>');
+                $('#TuesdayContent').prepend('<div class="removeEdit"><p>' + value + " at " + dayTemperature + "°C" + '</p><span id="'+i+'" class="btn btn-primary removeBtn"><img src="img/garbage.png" width="50%"></span></div>');
             }
         }
 
@@ -43,7 +43,7 @@ $(document).ready(function () {
             for (i = 0; i < obj['Wednesday'].length; i++) {
                 var value = obj['Wednesday'][i].toString().replace(",", " - ");
 
-                $('#WednesdayContent').prepend('<p>' + value + " at " + dayTemperature + "°C" + '</p>');
+                $('#WednesdayContent').prepend('<div class="removeEdit"><p>' + value + " at " + dayTemperature + "°C" + '</p><span id="'+i+'" class="btn btn-primary removeBtn"><img src="img/garbage.png" width="50%"></span></div>');
             }
         }
 
@@ -55,7 +55,7 @@ $(document).ready(function () {
             for (i = 0; i < obj['Thursday'].length; i++) {
                 var value = obj['Thursday'][i].toString().replace(",", " - ");
 
-                $('#ThursdayContent').prepend('<p>' + value + " at " + dayTemperature + "°C" + '</p>');
+                $('#ThursdayContent').prepend('<div class="removeEdit"><p>' + value + " at " + dayTemperature + "°C" + '</p><span id="'+i+'" class="btn btn-primary removeBtn"><img src="img/garbage.png" width="50%"></span></div>');
             }
 
         }
@@ -67,7 +67,7 @@ $(document).ready(function () {
             }
             for (i = 0; i < obj['Friday'].length; i++) {
                 var value = obj['Friday'][i].toString().replace(",", " - ");
-                $('#FridayContent').prepend('<p>' + value + " at " + dayTemperature + "°C" + '</p>');
+                $('#FridayContent').prepend('<div class="removeEdit"><p>' + value + " at " + dayTemperature + "°C" + '</p><span id="'+i+'" class="btn btn-primary removeBtn"><img src="img/garbage.png" width="50%"></span></div>');
             }
         }
 
@@ -78,8 +78,7 @@ $(document).ready(function () {
             }
             for (i = 0; i < obj['Saturday'].length; i++) {
                 var value = obj['Saturday'][i].toString().replace(",", " - ");
-
-                $('#SaturdayContent').prepend('<p>' + value + " at " + dayTemperature + "°C" + '</p>');
+                $('#SaturdayContent').prepend('<div class="removeEdit"><p>' + value + " at " + dayTemperature + "°C" + '</p><span id="'+i+'" class="btn btn-primary removeBtn"><img src="img/garbage.png" width="50%"></span></div>');
             }
         }
 
@@ -91,7 +90,7 @@ $(document).ready(function () {
             for (i = 0; i < obj['Sunday'].length; i++) {
                 var value = obj['Sunday'][i].toString().replace(",", " - ");
 
-                $('#SundayContent').prepend('<p>' + value + " at " + dayTemperature + "°C" + '</p>');
+                $('#SundayContent').prepend('<div class="removeEdit"><p>' + value + " at " + dayTemperature + "°C" + '</p><span id="'+i+'" class="btn btn-primary removeBtn"><img src="img/garbage.png" width="50%"></span></div>');
             }
         }
     });
@@ -107,7 +106,7 @@ $(document).ready(function () {
         var to = $('#toInput').val();
         console.log(day + from + to);
         addPeriod(day, from, to);
-        $('#fromToContainer').css('visibility', 'hidden');
+        $('.fromToContainer').css('visibility', 'hidden');
         //Need a refresh to show the just added data. make a function out of it
     });
     
@@ -117,11 +116,10 @@ $(document).ready(function () {
         removePeriod('Monday', i);
     });
 
-    //to show switch input
+    //to show the switch input fields
     $('body').on('click', '.addSwitchBtn', function () {
-        $('#fromToContainer').css('visibility', 'visible');
+        $('.fromToContainer').css('visibility', 'visible');
     });
-
 });
 
 
@@ -137,7 +135,7 @@ $(document).ready(function () {
             clickPolice = true;
 
             console.log("kip");
-
+            $('.fromToContainer').css('visibility', 'hidden');
             var currIndex = $(this).index('.acc-btn'),
                 targetHeight = $('.acc-content-inner').eq(currIndex).outerHeight();
 
