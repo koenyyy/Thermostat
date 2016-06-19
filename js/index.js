@@ -64,6 +64,7 @@ $(document).ready(function () {
 	setup();
 	// set the update function to run every second
 	setInterval(tick, 3000);
+	tick();
 });
 
 function formatDeg(value) {
@@ -122,7 +123,7 @@ function showManual() {
 	
 	$("#tempTargetDetails").html("The target temperature is set to this value until the thermostat is put back in Program mode.");
 	
-	$("#programControls").fadeOut();
+	$("#programControls").hide();
 }
 
 function showProgram() {
@@ -132,5 +133,5 @@ function showProgram() {
 	put("weekProgramState", "week_program_state", "on");
 	
 	$("#tempTargetDetails").html("The target temperature will follow the week program. You can override it temporarily here until the next switch or midnight.");
-	$("#programControls").fadeIn();
+	$("#programControls").show();
 }

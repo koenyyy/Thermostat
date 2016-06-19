@@ -141,10 +141,18 @@ $(document).ready(function () {
     });
 });
 
+function tick() {
+	var currentDay = get("", "current_day");
+	var time = get("", "time");
+	$("#dateTime").html(currentDay + ", " + time);
+}
 
 $(document).ready(function () {
     $('body').css('overflow-y', 'hidden');
 
+	setInterval(tick, 1000);
+	tick();
+	
     //Click interaction with tabs
     var animTime = 300,
         clickPolice = false;
