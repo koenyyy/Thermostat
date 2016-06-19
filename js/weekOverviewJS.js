@@ -2,7 +2,6 @@ $(document).ready(function () {
     //get the weekprogram
     var weekProgram = getWeekProgram();
     var dayTemperature = get("dayTemperature", "day_temperature");
-    console.log(dayTemperature);
     var weekProgramString = JSON.stringify(weekProgram);
     var obj = $.parseJSON(weekProgramString);
 
@@ -99,12 +98,11 @@ $(document).ready(function () {
     ///////////////////////////////////////////////////
     //Koen, you need to fix the way input can be done//
     ///////////////////////////////////////////////////
-    $("#sendSwitch").click(function () {
-        var parentID = $(".acc-content-inner").closest("div").attr("id");
-        console.log(parentID);
+    $(".sendSwitch").click(function () {
+        var parentID = $(this).closest('div.acc-content-inner').attr('id')
         var day = parentID.replace("Content", "");
-        var from = $('#fromInput').val();
-        var to = $('#toInput').val();
+        var from = $(this).closest("div").find("input.fromInput").val();
+        var to = $(this).closest("div").find("input.toInput").val();
         console.log(day + from + to);
         addPeriod(day, from, to);
         $('.fromToContainer').css('visibility', 'hidden');
